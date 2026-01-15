@@ -1,0 +1,86 @@
+{
+  "id": "example_workflow_001",
+  "name": "文本处理工作流",
+  "description": "一个简单的文本处理工作流示例，演示如何使用AI进行文本分析和转换",
+  "nodes": [
+    {
+      "id": "input-1",
+      "type": "input",
+      "position": {
+        "x": 50,
+        "y": 100
+      },
+      "data": {
+        "label": "用户输入",
+        "config": {}
+      }
+    },
+    {
+      "id": "ai-1",
+      "type": "ai_prompt",
+      "position": {
+        "x": 250,
+        "y": 100
+      },
+      "data": {
+        "label": "文本分析",
+        "config": {
+          "prompt": "分析以下文本的情感和关键词：\n{input}",
+          "model": "gpt-3.5-turbo",
+          "temperature": 0.7
+        }
+      }
+    },
+    {
+      "id": "transformer-1",
+      "type": "transformer",
+      "position": {
+        "x": 450,
+        "y": 100
+      },
+      "data": {
+        "label": "结果格式化",
+        "config": {
+          "code": "(input) => ({ timestamp: new Date().toISOString(), result: input })"
+        }
+      }
+    },
+    {
+      "id": "output-1",
+      "type": "output",
+      "position": {
+        "x": 650,
+        "y": 100
+      },
+      "data": {
+        "label": "最终输出",
+        "config": {}
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge-1",
+      "source": "input-1",
+      "target": "ai-1",
+      "sourceHandle": "output",
+      "targetHandle": "input"
+    },
+    {
+      "id": "edge-2",
+      "source": "ai-1",
+      "target": "transformer-1",
+      "sourceHandle": "output",
+      "targetHandle": "input"
+    },
+    {
+      "id": "edge-3",
+      "source": "transformer-1",
+      "target": "output-1",
+      "sourceHandle": "output",
+      "targetHandle": "input"
+    }
+  ],
+  "created_at": "2026-01-15T10:00:00Z",
+  "updated_at": "2026-01-15T10:00:00Z"
+}
