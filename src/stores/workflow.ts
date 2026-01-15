@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { Workflow, Node, Edge, WorkflowExecutionResult } from '@types/index'
+import type { Workflow, Node, Edge, WorkflowExecutionResult } from '@types'
 
 interface WorkflowStore {
   // 当前工作流

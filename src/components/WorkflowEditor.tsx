@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
 import { useWorkflowStore } from '@stores/workflow'
-import { Node as FlowNode, Edge as FlowEdge, NodeType } from '@types/index'
+import type { Node as FlowNode, NodeType } from '@types'
 import { Canvas } from './canvas/Canvas'
 import { Sidebar } from './sidebar/Sidebar'
 import { Toolbar } from './toolbar/Toolbar'
@@ -8,7 +8,7 @@ import { PropertiesPanel } from './properties/PropertiesPanel'
 import styles from '@styles/editor.module.scss'
 
 export const WorkflowEditor: React.FC = () => {
-  const { nodes, edges, addNode, addEdge } = useWorkflowStore()
+  const { nodes, edges, addNode } = useWorkflowStore()
 
   const handleDragOver = useCallback((e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault()

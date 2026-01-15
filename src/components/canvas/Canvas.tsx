@@ -1,5 +1,5 @@
 import React, { useCallback, useRef, useState } from 'react'
-import { Node as FlowNode, Edge as FlowEdge } from '@types/index'
+import type { Node as FlowNode, Edge as FlowEdge } from '@types'
 import { useWorkflowStore } from '@stores/workflow'
 import { FlowNode as NodeComponent } from '../nodes/FlowNode'
 import { FlowEdge as EdgeComponent } from '../nodes/FlowEdge'
@@ -84,7 +84,7 @@ export const Canvas: React.FC<CanvasProps> = ({ nodes, edges }) => {
     >
       <svg className={styles.edges_layer}>
         {edges.map((edge) => (
-          <EdgeComponent key={edge.id} edge={edge} scale={scale} pan={pan} />
+          <EdgeComponent key={edge.id} edge={edge} />
         ))}
       </svg>
 

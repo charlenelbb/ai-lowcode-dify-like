@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { WorkflowEditor } from './components/WorkflowEditor'
 import { useWorkflowStore } from './stores/workflow'
-import { Workflow } from './types/index'
+import type { Workflow } from './types/index'
 import './styles/global.scss'
 
 function App() {
@@ -24,5 +24,4 @@ function App() {
   return <WorkflowEditor />
 }
 
-export default App
 export default App

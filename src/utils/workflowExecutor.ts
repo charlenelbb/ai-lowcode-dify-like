@@ -1,4 +1,4 @@
-import { Workflow, Node, Edge, WorkflowExecutionResult } from '@types/index'
+import type { Workflow, Node, WorkflowExecutionResult } from '@types'
 
 class WorkflowExecutor {
   private executionResults: Map<string, WorkflowExecutionResult> = new Map()
@@ -20,10 +20,12 @@ class WorkflowExecutor {
   }
 
   private getStartNodes(workflow: Workflow): string[] {
-    const nodeIds = new Set(workflow.nodes.map((n) => n.id))
-    const nodesWithInput = new Set(workflow.edges.map((e) => e.target))
+    const nodeIds = new Set(workflow.nodes.map((n: Node) => n.id))
+    const nodesWithInput = new Set(workflow.edges.map((e: any) => e.target))
 
-    return Array.from(nodeIds).filter((id) => !nodesWithInput.has(id))
+    return Array.from(nodeIds).filter(
+      (id) => !nodesWithInput.has(id)
+    ) as string[]
   }
 
   private async executeNode(nodeId: string, workflow: Workflow): Promise<any> {
@@ -32,7 +34,7 @@ class WorkflowExecutor {
     }
 
     this.visitedNodes.add(nodeId)
-    const node = workflow.nodes.find((n) => n.id === nodeId)
+    const node = workflow.nodes.find((n: Node) => n.id === nodeId)
 
     if (!node) {
       throw new Error(`节点 ${nodeId} 不存在`)
@@ -76,7 +78,7 @@ class WorkflowExecutor {
     workflow: Workflow
   ): Promise<Record<string, any>> {
     const inputs: Record<string, any> = {}
-    const incomingEdges = workflow.edges.filter((e) => e.target === nodeId)
+    const incomingEdges = workflow.edges.filter((e: any) => e.target === nodeId)
 
     for (const edge of incomingEdges) {
       const sourceResult = this.executionResults.get(edge.source)
@@ -90,8 +92,8 @@ class WorkflowExecutor {
 
   private getNextNodes(nodeId: string, workflow: Workflow): string[] {
     return workflow.edges
-      .filter((e) => e.source === nodeId)
-      .map((e) => e.target)
+      .filter((e: any) => e.source === nodeId)
+      .map((e: any) => e.target)
   }
 
   private async executeNodeLogic(
@@ -154,7 +156,7 @@ class WorkflowExecutor {
 
   private async executeCondition(
     node: Node,
-    inputs: Record<string, any>
+    _inputs: Record<string, any>
   ): Promise<boolean> {
     const expression = node.data.config?.expression || ''
     try {

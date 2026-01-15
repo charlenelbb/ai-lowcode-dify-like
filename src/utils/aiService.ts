@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { AIModelConfig } from '@types/index'
+import type { AIModelConfig } from '@types'
 
 class AIService {
   private config: AIModelConfig | null = null

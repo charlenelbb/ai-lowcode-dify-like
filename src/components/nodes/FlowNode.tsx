@@ -1,11 +1,11 @@
 import React from 'react'
-import { Node as FlowNode } from '@types/index'
+import type { Node as FlowNodeType } from '@types'
 import { useWorkflowStore } from '@stores/workflow'
 import styles from '@styles/node.module.scss'
 import { Trash2 } from 'lucide-react'
 
 interface NodeProps {
-  node: FlowNode
+  node: FlowNodeType
   onDragStart: (e: React.DragEvent) => void
   onDragEnd: (e: React.DragEvent) => void
 }

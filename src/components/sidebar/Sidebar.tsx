@@ -1,5 +1,5 @@
 import React from 'react'
-import { NodeType } from '@types/index'
+import { NodeType } from '@types'
 import styles from '@styles/sidebar.module.scss'
 import {
   Plus,
@@ -7,8 +7,8 @@ import {
   Zap,
   Filter,
   GitBranch,
-  LoopIcon,
-  Trash2,
+  Repeat2,
+  Wrench,
   Database,
 } from 'lucide-react'
 
@@ -31,7 +31,7 @@ const NODE_CATEGORIES = [
     category: '逻辑控制',
     nodes: [
       { type: NodeType.CONDITION, label: '条件判断', icon: GitBranch },
-      { type: NodeType.LOOP, label: '循环', icon: LoopIcon },
+      { type: NodeType.LOOP, label: '循环', icon: Repeat2 },
     ],
   },
   {
@@ -43,7 +43,7 @@ const NODE_CATEGORIES = [
   },
   {
     category: '工具',
-    nodes: [{ type: NodeType.TOOL, label: '工具调用', icon: Trash2 }],
+    nodes: [{ type: NodeType.TOOL, label: '工具调用', icon: Wrench }],
   },
 ]
 

@@ -1,13 +1,11 @@
 import React from 'react'
-import { Edge } from '@types/index'
+import type { Edge } from './types/index'
 
 interface EdgeProps {
   edge: Edge
-  scale: number
-  pan: { x: number; y: number }
 }
 
-export const FlowEdge: React.FC<EdgeProps> = ({ edge, scale, pan }) => {
+export const FlowEdge: React.FC<EdgeProps> = ({ edge }) => {
   // 简单的直线连接
   const sx = 0
   const sy = 0
